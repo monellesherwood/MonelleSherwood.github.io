@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monelle Sherwood — Market Research Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --purple: #4B0082;
+  --purple-mid: #6B0FA3;
+  --purple-light: #F0E6F8;
+  --gold: #FFB81C;
+  --gold-dark: #C8890A;
+  --gold-light: #FFF6DC;
+  --cream: #FDFAF4;
+  --white: #FFFFFF;
+  --ink: #1A0F2E;
+  --ink-mid: #3D2B5A;
+  --muted: #7A6B8A;
+  --border: #E8DDEF;
+  --card-bg: #FFFFFF;
+  --nav-h: 60px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(75,0,130,0.09);
+  --shadow-lg: 0 12px 48px rgba(75,0,130,0.14);
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width:100%; display:block; }
+a { color: var(--purple); text-decoration:none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; cursor:pointer; border:none; }
+
+/* ─── GRAIN OVERLAY ─── */
+body::before {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: sticky; top:0; z-index:200;
+  height: var(--nav-h);
+  background: rgba(253,250,244,0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  max-width: 1100px; margin:0 auto; width:100%;
+  padding: 0 28px;
+  display: flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight:700;
+  color: var(--purple); white-space:nowrap;
+  letter-spacing:-0.02em;
+}
+.nav-brand em { font-style:normal; color:var(--gold-dark); }
+.nav-links { display:flex; gap:2px; overflow-x:auto; }
+.nav-links::-webkit-scrollbar { display:none; }
+.nbtn {
+  font-size:11.5px; font-weight:500; letter-spacing:0.06em;
+  text-transform:uppercase; padding:7px 14px; border-radius:7px;
+  background:transparent; color:var(--muted);
+  transition: background .2s, color .2s; white-space:nowrap;
+}
+.nbtn:hover { background:var(--purple-light); color:var(--purple); }
+.nbtn.active { background:var(--purple); color:#fff; font-weight:600; }
+
+/* ─── PAGE SHELL ─── */
+.pg { display:none; animation: fadeUp .4s ease both; }
+.pg.active { display:block; }
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(18px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.wrap { max-width:920px; margin:0 auto; padding:56px 28px 96px; }
+
+/* ─── SECTION LABEL ─── */
+.eyebrow {
+  font-size:10.5px; font-weight:700; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--gold-dark);
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+}
+.eyebrow::before { content:''; width:28px; height:2px; background:var(--gold); border-radius:2px; }
+.s-title {
+  font-family:'Playfair Display', serif;
+  font-size:36px; font-weight:700; letter-spacing:-0.03em; line-height:1.1;
+  color:var(--ink); margin-bottom:10px;
+}
+.s-sub { font-size:14.5px; color:var(--muted); margin-bottom:40px; }
+
+/* ─── CARDS ─── */
+.card {
+  background:var(--card-bg); border-radius:var(--radius);
+  border:1px solid var(--border); padding:28px 32px; margin-bottom:16px;
+  transition: box-shadow .25s, transform .25s;
+}
+.card:hover { box-shadow:var(--shadow); }
+.card-gold { border-left:4px solid var(--gold); }
+.card-purple { border-left:4px solid var(--purple); }
+
+/* ─── TAGS ─── */
+.tag {
+  display:inline-block; font-size:11px; font-weight:600;
+  padding:4px 12px; border-radius:100px; margin:3px 4px 3px 0; letter-spacing:0.02em;
+}
+.tag-p { background:var(--purple-light); color:var(--purple); border:1px solid rgba(75,0,130,0.12); }
+.tag-g { background:var(--gold-light); color:var(--gold-dark); border:1px solid rgba(255,184,28,0.22); }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12.5px; font-weight:700; letter-spacing:0.07em;
+  text-transform:uppercase; padding:13px 28px; border-radius:9px;
+  transition: all .22s;
+}
+.btn-primary { background:var(--purple); color:#fff; }
+.btn-primary:hover { background:var(--purple-mid); box-shadow:0 6px 20px rgba(75,0,130,0.22); transform:translateY(-1px); text-decoration:none; }
+.btn-outline { border:1.5px solid var(--purple); color:var(--purple); background:transparent; }
+.btn-outline:hover { background:var(--purple-light); text-decoration:none; }
+.btn-gold { background:var(--gold); color:var(--ink); }
+.btn-gold:hover { background:#e8a618; box-shadow:0 6px 20px rgba(255,184,28,0.3); transform:translateY(-1px); text-decoration:none; }
+
+/* ─── GRID HELPERS ─── */
+.g2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+.g3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; }
+.fw { display:flex; flex-wrap:wrap; gap:16px; }
+
+/* ══════════════════════════════════════════════
+   HOME
+══════════════════════════════════════════════ */
+.hero {
+  min-height: calc(100vh - var(--nav-h));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:60px 28px 80px;
+  position:relative; overflow:hidden;
+}
+.hero-blob {
+  position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none;
+}
+.hero-blob-1 {
+  width:500px; height:500px; top:-100px; left:-150px;
+  background:radial-gradient(circle, rgba(75,0,130,0.11), transparent 70%);
+}
+.hero-blob-2 {
+  width:400px; height:400px; bottom:-80px; right:-100px;
+  background:radial-gradient(circle, rgba(255,184,28,0.15), transparent 70%);
+}
+.hero-avatar {
+  width:120px; height:120px; border-radius:50%;
+  background:linear-gradient(135deg, var(--purple), var(--purple-mid));
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 32px;
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 8px rgba(255,184,28,0.35),
+    var(--shadow-lg);
+  animation: avatarIn .8s cubic-bezier(.2,.6,.3,1) both;
+}
+@keyframes avatarIn {
+  from { opacity:0; transform:scale(.7) translateY(20px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
+}
+.hero-avatar span {
+  font-family:'Playfair Display',serif; font-size:36px; color:#fff; font-weight:400;
+}
+.hero-name {
+  font-family:'Playfair Display',serif; font-size:58px; font-weight:900;
+  letter-spacing:-0.04em; line-height:1.0; color:var(--ink); margin-bottom:12px;
+  animation: textIn .7s .1s cubic-bezier(.2,.6,.3,1) both;
+}
+.hero-name em { font-style:italic; color:var(--purple); }
+.hero-tagline {
+  font-size:17px; color:var(--muted); max-width:540px; margin:0 auto 28px;
+  animation: textIn .7s .2s cubic-bezier(.2,.6,.3,1) both;
+}
+.hero-tagline strong { color:var(--purple); font-weight:600; }
+@keyframes textIn {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.contact-pills {
+  display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
+  margin-bottom:32px;
+  animation: textIn .7s .3s cubic-bezier(.2,.6,.3,1) both;
+}
+.cpill {
+  font-size:12.5px; color:var(--muted); background:var(--white);
+  border:1px solid var(--border); border-radius:100px; padding:8px 18px;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.cpill-dot { color:var(--gold); font-size:7px; }
+.hero-ctas {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:56px;
+  animation: textIn .7s .35s cubic-bezier(.2,.6,.3,1) both;
+}
+.stats-strip {
+  display:flex; flex-wrap:wrap; background:var(--white); border-radius:var(--radius);
+  border:1px solid var(--border); overflow:hidden; max-width:600px; margin:0 auto;
+  box-shadow:var(--shadow);
+  animation: textIn .7s .45s cubic-bezier(.2,.6,.3,1) both;
+}
+.stat {
+  flex:1 1 120px; padding:22px 16px; text-align:center;
+  border-right:1px solid var(--border);
+}
+.stat:last-child { border-right:none; }
+.stat-n {
+  font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--purple);
+}
+.stat-l { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-top:4px; }
+
+/* ══════════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════════ */
+.about-body { font-size:15.5px; line-height:1.9; color:var(--ink-mid); }
+.about-body p + p { margin-top:20px; }
+.quick-box {
+  background:linear-gradient(135deg, var(--purple), #6B0FA3);
+  border-radius:var(--radius); padding:28px 28px 24px; color:#fff; flex:0 0 260px;
+}
+.quick-box h4 {
+  font-family:'Playfair Display',serif; font-size:19px; color:var(--gold);
+  margin-bottom:20px; font-weight:700;
+}
+.qrow { margin-bottom:14px; }
+.qlabel { font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,.5); margin-bottom:3px; }
+.qval { font-size:13.5px; font-weight:500; }
+
+/* ══════════════════════════════════════════════
+   CAPSTONE
+══════════════════════════════════════════════ */
+.cap-banner {
+  background:linear-gradient(135deg, var(--purple) 0%, #6B0FA3 60%, #2D0557 100%);
+  border-radius:var(--radius); padding:44px 40px; margin-bottom:20px;
+  position:relative; overflow:hidden;
+}
+.cap-banner::before {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:240px; height:240px; border-radius:50%;
+  background:rgba(255,184,28,0.1);
+}
+.cap-banner::after {
+  content:''; position:absolute; bottom:-40px; left:30%;
+  width:160px; height:160px; border-radius:50%;
+  background:rgba(255,255,255,0.04);
+}
+.cap-eyebrow {
+  font-size:10.5px; font-weight:700; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:14px; position:relative;
+}
+.cap-banner h2 {
+  font-family:'Playfair Display',serif; font-size:40px; font-weight:900;
+  color:#fff; line-height:1.1; margin-bottom:12px; position:relative;
+}
+.cap-banner p { font-size:15px; color:rgba(255,255,255,.72); max-width:620px; line-height:1.7; position:relative; }
+.cap-card { border-left-width:4px; border-left-style:solid; }
+.cap-card h4 { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--ink); margin-bottom:12px; }
+.cap-card p { font-size:14px; line-height:1.85; color:var(--ink-mid); }
+.fin-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; }
+.fin-tile {
+  text-align:center; padding:20px 10px; border-radius:var(--radius-sm);
+  background:var(--cream); border:1px solid var(--border);
+}
+.fin-tile.star { background:linear-gradient(135deg, rgba(75,0,130,.06), rgba(255,184,28,.08)); border-color:var(--gold); }
+.fin-v { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--purple); margin:6px 0; }
+.fin-l { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+.doc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+.doc-link {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:20px 22px; transition:all .25s; text-decoration:none!important;
+}
+.doc-link:hover { border-color:var(--gold); box-shadow:0 4px 16px rgba(255,184,28,.12); transform:translateY(-2px); }
+.doc-icon { font-size:22px; margin-bottom:10px; }
+.doc-title { font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:3px; }
+.doc-sub { font-size:11px; color:var(--muted); }
+
+/* ══════════════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════════════ */
+.proj-card {
+  background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius);
+  overflow:hidden; cursor:pointer; transition:all .28s;
+  margin-bottom:16px;
+}
+.proj-card:hover { box-shadow:var(--shadow); transform:translateY(-2px); }
+.proj-card.feat { border-color:var(--gold); box-shadow:0 4px 20px rgba(255,184,28,.1); }
+.proj-badge {
+  background:linear-gradient(90deg, var(--purple), var(--gold));
+  padding:6px 22px; font-size:10px; font-weight:700; color:#fff;
+  text-transform:uppercase; letter-spacing:0.16em;
+}
+.proj-inner { padding:24px 28px; }
+.proj-title {
+  font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--ink);
+  margin-bottom:8px;
+}
+.proj-toggle { font-size:20px; color:var(--muted); transition:transform .3s; flex-shrink:0; }
+.proj-toggle.open { transform:rotate(180deg); }
+.proj-details { display:none; margin-top:20px; padding-top:20px; border-top:1px solid var(--border); }
+.proj-details.open { display:block; }
+.proj-details p { font-size:14px; line-height:1.85; color:var(--ink-mid); margin-bottom:18px; }
+.skills-used-label { font-size:10.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:10px; }
+.deliverable-box {
+  margin-top:16px; padding:14px 18px; border-radius:var(--radius-sm);
+  background:var(--gold-light); border:1px solid rgba(255,184,28,.2);
+  font-size:13px; color:var(--gold-dark);
+}
+.deliverable-box a { color:var(--gold-dark); font-weight:600; }
+.deliverable-box a:hover { color:var(--purple); }
+
+/* ══════════════════════════════════════════════
+   SKILLS
+══════════════════════════════════════════════ */
+.skill-category {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:24px 26px; transition:all .25s;
+}
+.skill-category:hover { box-shadow:var(--shadow); }
+.sk-cat-head {
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em;
+  color:var(--purple); margin-bottom:16px; padding-bottom:10px;
+  border-bottom:2px solid var(--purple-light);
+}
+.sk-item { display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:13.5px; color:var(--ink-mid); }
+.sk-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.sk-dot.gold { background:var(--gold); }
+.sk-dot.muted { background:rgba(75,0,130,.25); }
+.cert-row {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:13px; color:var(--ink-mid); line-height:1.5; margin-bottom:10px;
+}
+.cert-star { color:var(--gold); flex-shrink:0; margin-top:1px; }
+
+/* ══════════════════════════════════════════════
+   REFLECTION
+══════════════════════════════════════════════ */
+.ref-wrap { display:flex; gap:18px; align-items:flex-start; }
+.ref-num {
+  width:48px; height:48px; border-radius:12px; background:var(--purple-light);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--purple);
+}
+.ref-title { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:var(--ink); margin-bottom:12px; }
+.ref-body { font-size:14.5px; color:var(--ink-mid); line-height:1.9; }
+.scripture {
+  background:linear-gradient(135deg, var(--purple) 0%, #2D0557 100%);
+  border-radius:var(--radius); padding:40px 36px; text-align:center; margin-top:8px;
+}
+.scripture-text {
+  font-family:'Playfair Display',serif; font-size:22px; font-style:italic;
+  font-weight:500; color:var(--gold); line-height:1.55; margin-bottom:14px;
+}
+.scripture-ref { font-size:12px; color:rgba(255,255,255,.5); letter-spacing:0.1em; text-transform:uppercase; }
+
+/* ══════════════════════════════════════════════
+   RESUME SECTION
+══════════════════════════════════════════════ */
+.res-dl-bar {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:16px 24px; margin-bottom:20px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+}
+.exp-row { margin-bottom:28px; }
+.exp-row:last-child { margin-bottom:0; }
+.exp-head { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; }
+.exp-title { font-size:15.5px; font-weight:700; color:var(--ink); }
+.exp-dates { font-size:12px; color:var(--muted); font-weight:500; }
+.exp-org { font-size:13.5px; color:var(--purple); font-weight:500; margin:2px 0 10px; }
+.bullet-row { display:flex; gap:10px; margin-bottom:8px; font-size:13.5px; line-height:1.65; color:var(--ink-mid); }
+.bullet-dot { color:var(--gold); font-size:7px; margin-top:7px; flex-shrink:0; }
+.skill-col { flex:1 1 220px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px 22px; }
+.sk-col-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--purple); margin-bottom:12px; }
+.inv-row { display:flex; gap:10px; margin-bottom:8px; font-size:12.5px; align-items:flex-start; }
+.inv-star { color:var(--gold); flex-shrink:0; }
+
+/* ══════════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════════ */
+.contact-tile {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:22px 24px; transition:all .25s;
+}
+.contact-tile:hover { border-color:var(--purple); box-shadow:var(--shadow); transform:translateY(-2px); }
+.ct-icon { font-size:22px; margin-bottom:10px; }
+.ct-label { font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); margin-bottom:4px; }
+.ct-val { font-size:14.5px; font-weight:600; color:var(--ink); }
+.ct-val a { color:var(--purple); }
+.refs-block {
+  background:linear-gradient(135deg, rgba(75,0,130,.03), rgba(255,184,28,.04));
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:36px 32px; text-align:center; margin-top:16px;
+}
+.refs-block h3 { font-family:'Playfair Display',serif; font-size:24px; color:var(--ink); margin-bottom:8px; }
+.refs-block p { font-size:14px; color:var(--muted); }
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+footer {
+  text-align:center; padding:32px 24px 40px;
+  border-top:1px solid var(--border); background:var(--white);
+}
+.foot-title { font-family:'Playfair Display',serif; font-size:15px; color:var(--ink); margin-bottom:4px; font-weight:600; }
+.foot-sub { font-size:12.5px; color:var(--muted); margin-bottom:3px; }
+.foot-sm { font-size:11px; color:rgba(122,107,138,.5); }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .hero-name { font-size:38px; }
+  .s-title { font-size:26px; }
+  .cap-banner h2 { font-size:28px; }
+  .cap-banner { padding:28px 22px; }
+  .nav-brand { font-size:14px; }
+  .nbtn { font-size:10px; padding:6px 10px; }
+  .card { padding:18px 20px; }
+  .wrap { padding:36px 18px 72px; }
+  .quick-box { flex:1 1 100%; }
+  .gal-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ══════════════════════════════════════════════
+   GALLERY
+══════════════════════════════════════════════ */
+.gal-upload-zone {
+  border: 2.5px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px 28px;
+  text-align: center;
+  background: var(--white);
+  cursor: pointer;
+  transition: all .25s;
+  margin-bottom: 28px;
+  position: relative;
+}
+.gal-upload-zone:hover, .gal-upload-zone.drag-over {
+  border-color: var(--purple);
+  background: var(--purple-light);
+}
+.gal-upload-zone input[type=file] {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0; cursor: pointer;
+}
+.gal-upload-icon { font-size: 40px; margin-bottom: 12px; }
+.gal-upload-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+}
+.gal-upload-sub { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.gal-upload-sub strong { color: var(--purple); }
+.gal-count {
+  display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 600;
+  color: var(--gold-dark); background: var(--gold-light);
+  padding: 5px 14px; border-radius: 100px; border: 1px solid rgba(255,184,28,.25);
+}
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.gal-item {
+  position: relative; border-radius: var(--radius-sm);
+  overflow: hidden; aspect-ratio: 1 / 1;
+  background: var(--border);
+  border: 1px solid var(--border);
+  transition: transform .25s, box-shadow .25s;
+  cursor: pointer;
+}
+.gal-item:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+.gal-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s;
+}
+.gal-item:hover img { transform: scale(1.06); }
+.gal-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(27,15,46,.65) 0%, transparent 55%);
+  opacity: 0; transition: opacity .25s;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 12px;
+}
+.gal-item:hover .gal-item-overlay { opacity: 1; }
+.gal-item-caption {
+  font-size: 12px; color: #fff; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.gal-remove {
+  position: absolute; top: 7px; right: 7px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(0,0,0,.55); color: #fff; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .2s; cursor: pointer; border: none;
+  z-index: 2;
+}
+.gal-item:hover .gal-remove { opacity: 1; }
+.gal-empty {
+  grid-column: 1 / -1; text-align: center; padding: 48px 20px;
+  color: var(--muted); font-size: 14px;
+}
+.gal-empty-icon { font-size: 36px; margin-bottom: 10px; opacity: .4; }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(10,4,20,.92); backdrop-filter: blur(12px);
+  align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lb-img-wrap { position: relative; max-width: 90vw; max-height: 88vh; }
+.lb-img-wrap img { max-width: 90vw; max-height: 82vh; object-fit: contain; border-radius: 10px; display: block; }
+.lb-caption {
+  text-align: center; color: rgba(255,255,255,.7);
+  font-size: 13px; margin-top: 10px;
+}
+.lb-close {
+  position: absolute; top: -38px; right: 0;
+  color: #fff; font-size: 28px; cursor: pointer; background: none; border: none; opacity: .7;
+}
+.lb-close:hover { opacity: 1; }
+.lb-arrow {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.12); color: #fff; border: none;
+  width: 48px; height: 48px; border-radius: 50%; font-size: 22px;
+  cursor: pointer; transition: background .2s; z-index: 1001;
+}
+.lb-arrow:hover { background: rgba(255,255,255,.22); }
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand"><em>◆</em> MS Portfolio</div>
+    <div class="nav-links">
+      <button class="nbtn active" onclick="go('home',this)">Home</button>
+      <button class="nbtn" onclick="go('about',this)">About</button>
+      <button class="nbtn" onclick="go('capstone',this)">Capstone</button>
+      <button class="nbtn" onclick="go('projects',this)">Projects</button>
+      <button class="nbtn" onclick="go('skills',this)">Skills</button>
+      <button class="nbtn" onclick="go('reflection',this)">Reflection</button>
+      <button class="nbtn" onclick="go('resume',this)">Résumé</button>
+      <button class="nbtn" onclick="go('contact',this)">Contact</button>
+      <button class="nbtn" onclick="go('gallery',this)">Gallery</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════ -->
+<section id="pg-home" class="pg active">
+  <div class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="hero-avatar"><span>MS</span></div>
+
+    <h1 class="hero-name">Monelle <em>Sherwood</em></h1>
+    <p class="hero-tagline">
+      Business Administration · Marketing Concentration<br>
+      <strong>Future Market Research Analyst</strong> — Benedict College Class of 2026
+    </p>
+
+    <div class="contact-pills">
+      <span class="cpill"><span class="cpill-dot">●</span> monelle.sherwood85@my.benedict.edu</span>
+      <span class="cpill"><span class="cpill-dot">●</span> (352) 708-9233</span>
+      <span class="cpill"><span class="cpill-dot">●</span> Columbia, SC</span>
+    </div>
+
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="go('capstone',null)">View Capstone ✦</button>
+      <button class="btn btn-outline" onclick="go('projects',null)">All Projects</button>
+      <button class="btn btn-gold" onclick="go('resume',null)">View Résumé</button>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat"><div class="stat-n">3.95</div><div class="stat-l">GPA</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Internships</div></div>
+      <div class="stat"><div class="stat-n">4</div><div class="stat-l">Projects</div></div>
+      <div class="stat"><div class="stat-n">May '26</div><div class="stat-l">Graduation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════ -->
+<section id="pg-about" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="s-title">About Me</h2>
+    <p class="s-sub">My professional identity, values, and what drives me.</p>
+
+    <div class="card about-body" style="margin-bottom:20px">
+      <p>What drives me is the belief that great marketing is a bridge between customers and companies. I'm not just interested in selling a product; I want to understand what customers truly need, translate that insight back to the business, and help them stand out in a crowded market with authenticity and creativity. At Benedict College, I discovered that resilience and thinking differently aren't just words — they're survival skills and superpowers. In our tight-knit HBCU community, my professors became mentors who pushed me to build not just knowledge, but character. We didn't just learn marketing theory; we created businesses from the ground up, solving real problems in real time. That experience taught me that excellence requires both rigor and imagination.</p>
+      <p style="margin-top:20px">What sets me apart is my creative resilience — my ability to approach every challenge, every campaign, every task with a perspective no one else brings. I don't think outside the box; I reimagine what the box could be. Whether it's storytelling, strategy, or execution, I bring a level of intentionality and originality to my work that stems from genuinely loving what I do. I'm the person who will work tirelessly to get it right, but never in a way that's been done before. I don't just want to contribute to a business; I want to transform how it connects with the world.</p>
+    </div>
+
+    <div class="fw">
+      <div class="card" style="flex:1 1 300px; margin-bottom:0">
+        <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px">Core Competencies</h3>
+        <span class="tag tag-g">Strategic Thinking</span>
+        <span class="tag tag-p">Market Analysis</span>
+        <span class="tag tag-p">Financial Literacy</span>
+        <span class="tag tag-g">Leadership</span>
+        <span class="tag tag-p">Communication</span>
+        <span class="tag tag-p">Problem Solving</span>
+        <span class="tag tag-g">Data-Driven Decisions</span>
+        <span class="tag tag-p">Critical Thinking</span>
+        <span class="tag tag-p">Adaptability</span>
+        <span class="tag tag-g">Teamwork</span>
+      </div>
+      <div class="quick-box">
+        <h4>Quick Facts</h4>
+        <div class="qrow"><div class="qlabel">Major</div><div class="qval">Business Administration</div></div>
+        <div class="qrow"><div class="qlabel">Concentration</div><div class="qval">Marketing</div></div>
+        <div class="qrow"><div class="qlabel">GPA</div><div class="qval">3.95 / 4.00</div></div>
+        <div class="qrow"><div class="qlabel">Advisor</div><div class="qval">Professor Melvin Miller</div></div>
+        <div class="qrow"><div class="qlabel">Target Role</div><div class="qval">Market Research Analyst</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CAPSTONE
+══════════════════════════════════════════════ -->
+<section id="pg-capstone" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">BA 432 · Senior Defense Day</div>
+    <h2 class="s-title">Senior Capstone Project</h2>
+    <p class="s-sub">My culminating business plan, financial model, and investor pitch.</p>
+
+    <div class="cap-banner">
+      <div class="cap-eyebrow">Featured Venture</div>
+      <h2>Nature Glow</h2>
+      <p>Nature Glow creates organic, customizable bar soaps infused with authentic Jamaican essential oils, giving eco-conscious and sensitive-skin consumers an affordable luxury that is organic, deeply personal, and rooted in Caribbean heritage.</p>
+    </div>
+
+    <div class="card cap-card" style="border-left-color:#E74C3C">
+      <h4>The Problem</h4>
+      <p>Most commercially available skincare products are loaded with synthetic chemicals, artificial fragrances, and harsh additives that irritate sensitive skin and contribute to environmental harm. Despite a growing consumer demand for organic and personalized personal care products, very few brands combine true ingredient transparency with meaningful cultural authenticity. The $7.57 billion global organic soap market remains largely dominated by mass producers who offer little to no customization, leaving eco-conscious buyers — especially those who value both sustainability and heritage — deeply underserved. Locally in Columbia, SC, no competitor currently bridges the gap between organic formulation, hands-on customization, and Caribbean cultural identity at an affordable price.</p>
+    </div>
+
+    <div class="card cap-card" style="border-left-color:#27AE60">
+      <h4>Our Solution</h4>
+      <p>Nature Glow produces premium, natural bar soaps using a high-efficiency melt-and-pour technique with organic shea butter bases and genuine Jamaican essential oils — including Pimento, Castor, Lemongrass, and Peppermint — sourced directly from a 40-year-old family-owned farm in Jamaica. Customers can fully customize their soap's fragrance, oil blend, and eco-friendly packaging, creating a product that is uniquely their own. The customer journey begins with discovery via Instagram, TikTok, or Facebook, then moves to purchase through the Shopify storefront or in person at Columbia pop-up markets like Soda City. Every product is packaged in 100% biodegradable, recyclable materials, reinforcing the brand's commitment to sustainability from farm to shower.</p>
+    </div>
+
+    <div class="card cap-card" style="border-left-color:#2980B9">
+      <h4>Target Market</h4>
+      <p>Nature Glow's ideal customer is an eco-conscious individual aged 13–60 living in the Columbia, SC metropolitan area — middle-income households willing to pay a modest premium for clean, natural skincare that aligns with their values. The global organic soap industry represents a Total Addressable Market (TAM) of $7.57 billion, while Nature Glow's Serviceable Addressable Market (SAM) narrows to $6.86 million within South Carolina's artisanal segment. In Year 1, Nature Glow targets a Serviceable Obtainable Market (SOM) of $26,790, growing to $40,185 by Year 3 as the brand expands its digital presence and repeat customer base.</p>
+    </div>
+
+    <div class="card cap-card" style="border-left-color:var(--gold)">
+      <h4>Revenue Model</h4>
+      <p>Nature Glow generates income through a direct-to-consumer model across three channels: online sales via Shopify and social commerce platforms (Instagram, TikTok Shop, Facebook Marketplace), and in-person sales at local Columbia pop-up markets. The business offers three product lines — Small Bars at $10, Medium Bars at $14, and Bundle Gift Sets at $30 — yielding an average selling price of $15.23 and a blended contribution margin of 73.8%. Additional revenue streams include customization add-ons and a digital loyalty program designed to increase repeat purchases, with a target of 50+ returning customers in Year 1.</p>
+    </div>
+
+    <div class="card cap-card" style="border-left-color:var(--purple)">
+      <h4>Competitive Advantage</h4>
+      <p>Nature Glow's primary moat is the exclusive combination of authentic Jamaican essential oil sourcing and deep customer customization — a pairing no competitor in the Columbia, SC market currently offers. The direct relationship with a 40-year-old family-owned farm in Jamaica creates a supply chain barrier that competitors cannot easily replicate. The brand's "Affordable Luxury" positioning at $10–$30 captures value-driven consumers who want more than mass market but cannot access premium boutique pricing. Planned trademark protection for the Nature Glow name, logo, and signature packaging will further deepen intellectual property barriers.</p>
+    </div>
+
+    <!-- Financial Snapshot -->
+    <div class="card" style="margin-bottom:20px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:20px">Financial Snapshot</h3>
+      <div class="fin-grid">
+        <div class="fin-tile star"><div style="font-size:15px;color:var(--muted)">◈</div><div class="fin-v">$18,475</div><div class="fin-l">Startup Costs</div></div>
+        <div class="fin-tile"><div style="font-size:15px;color:var(--muted)">◇</div><div class="fin-v">$26,790</div><div class="fin-l">Year 1 Revenue</div></div>
+        <div class="fin-tile"><div style="font-size:15px;color:var(--muted)">△</div><div class="fin-v">Month 11</div><div class="fin-l">Break-Even</div></div>
+        <div class="fin-tile"><div style="font-size:15px;color:var(--muted)">○</div><div class="fin-v">20.6%</div><div class="fin-l">Net Profit Margin</div></div>
+        <div class="fin-tile"><div style="font-size:15px;color:var(--muted)">□</div><div class="fin-v">73.8%</div><div class="fin-l">Gross Margin</div></div>
+        <div class="fin-tile"><div style="font-size:15px;color:var(--muted)">☆</div><div class="fin-v">$206,551</div><div class="fin-l">5-Year Projection</div></div>
+      </div>
+    </div>
+
+    <!-- Deliverable Links -->
+    <div class="doc-grid">
+      <a href="https://drive.google.com/file/d/1QnKdD2O_WFhI4aVepiMwOlx7-CNqQpkW/view?usp=sharing" class="doc-link" target="_blank">
+        <div class="doc-icon">📄</div>
+        <div class="doc-title">Executive Summary</div>
+        <div class="doc-sub">PDF · Google Drive</div>
+      </a>
+      <a href="https://docs.google.com/presentation/d/1_vsfWx1E4anCQixerMbaOVl3UlI4o5UH/edit?usp=sharing" class="doc-link" target="_blank">
+        <div class="doc-icon">📊</div>
+        <div class="doc-title">Pitch Deck</div>
+        <div class="doc-sub">Slides · Google Drive</div>
+      </a>
+      <a href="https://docs.google.com/spreadsheets/d/1fWaV3kqrA1CW4W178afROMHiL1mEJjq7/edit?usp=sharing" class="doc-link" target="_blank">
+        <div class="doc-icon">📈</div>
+        <div class="doc-title">Financial Workbook</div>
+        <div class="doc-sub">Sheets · Google Drive</div>
+      </a>
+      <a href="https://drive.google.com/file/d/15b7MopLO9Ew6b1HzfVcJqpjmrVd4dqqM/view?usp=sharing" class="doc-link" target="_blank">
+        <div class="doc-icon">🎬</div>
+        <div class="doc-title">Pitch Video</div>
+        <div class="doc-sub">Video · Google Drive</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════════════ -->
+<section id="pg-projects" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">Academic &amp; Professional Work</div>
+    <h2 class="s-title">Project Portfolio</h2>
+    <p class="s-sub">A curated showcase of my most impactful work across my Benedict College experience.</p>
+
+    <!-- PROJECT 1: CAPSTONE FEATURED -->
+    <div class="proj-card feat" onclick="toggleProj(this)">
+      <div class="proj-badge">★ Capstone Featured Project</div>
+      <div class="proj-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1">
+            <h3 class="proj-title">Nature Glow — Organic Skincare Startup</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+              <span class="tag tag-p">BA 432 Senior Capstone</span>
+              <span class="tag tag-g">Spring 2026</span>
+              <span style="font-size:12px;color:var(--muted)">Business Plan &amp; Live Pitch</span>
+            </div>
+          </div>
+          <span class="proj-toggle">▾</span>
+        </div>
+        <div class="proj-details">
+          <p>Developed a comprehensive business plan for Nature Glow, an organic skincare startup, outlining a direct-to-consumer model, multi-channel marketing strategy, and scalable operations rooted in Jamaican-sourced ingredients and product customization. Conducted industry and market analysis to define a $7.57B global opportunity, segment target markets, and position the brand through a value-based "affordable luxury" strategy. Built detailed financial projections including $26,790 Year 1 revenue, 74% gross margin, and a break-even point at Month 11 to demonstrate profitability and long-term growth potential.</p>
+          <div class="skills-used-label">Skills Applied</div>
+          <span class="tag tag-p">Business Planning</span>
+          <span class="tag tag-p">Financial Modeling</span>
+          <span class="tag tag-p">Market Research</span>
+          <span class="tag tag-p">Pitch Presentation</span>
+          <span class="tag tag-p">Marketing Strategy</span>
+          <div class="deliverable-box">
+            <strong>Deliverables: </strong>
+            <a href="https://docs.google.com/spreadsheets/d/1fWaV3kqrA1CW4W178afROMHiL1mEJjq7/edit?usp=sharing" target="_blank">Financial Workbook</a> ·
+            <a href="https://docs.google.com/presentation/d/1_vsfWx1E4anCQixerMbaOVl3UlI4o5UH/edit?usp=sharing" target="_blank">Pitch Deck</a> ·
+            <a href="https://docs.google.com/document/d/1p9Q-a23F8BUAZd6m3epvGPuVVoDrh8CZDeGOmjyaR0M/edit?usp=sharing" target="_blank">Business Plan</a> ·
+            <a href="https://drive.google.com/file/d/15b7MopLO9Ew6b1HzfVcJqpjmrVd4dqqM/view?usp=sharing" target="_blank">Pitch Video</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1">
+            <h3 class="proj-title">Your World. Your Choice. Your BFF. — Experian Campaign</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+              <span class="tag tag-p">Center for Financial Advancement</span>
+              <span class="tag tag-g">Fall 2025 – Spring 2026</span>
+              <span style="font-size:12px;color:var(--muted)">Pitch Competition</span>
+            </div>
+          </div>
+          <span class="proj-toggle">▾</span>
+        </div>
+        <div class="proj-details">
+          <p>Led the development of a multi-channel marketing campaign for Experian's annual pitch competition targeting Gen Z, focused on increasing financial literacy and driving app adoption. Designed and analyzed primary research (50+ survey responses and interviews), uncovering key insights such as 75% of students needing financial support and 25% losing money to unused subscriptions, which directly shaped campaign strategy. Collaborated with a cross-functional team to deliver a data-driven go-to-market plan with projected impact of 6–10 million impressions, 150,000–300,000 engagements, and 25,000–45,000 app downloads.</p>
+          <div class="skills-used-label">Skills Applied</div>
+          <span class="tag tag-p">Market Research</span>
+          <span class="tag tag-p">Consumer Insights</span>
+          <span class="tag tag-p">Creative Campaign Development</span>
+          <span class="tag tag-p">Data Analysis</span>
+          <div class="deliverable-box">
+            <strong>Deliverable: </strong>
+            <a href="https://canva.link/3gobo22gy5lwznc" target="_blank">Campaign Presentation (Canva)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1">
+            <h3 class="proj-title">Empowerment Through Transformation — Fincredible.com</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+              <span class="tag tag-p">Center for Financial Advancement</span>
+              <span class="tag tag-g">Fall 2024 – Spring 2025</span>
+              <span style="font-size:12px;color:var(--muted)">Pitch Competition</span>
+            </div>
+          </div>
+          <span class="proj-toggle">▾</span>
+        </div>
+        <div class="proj-details">
+          <p>Developed a gamified financial literacy platform — Fincredible.com and Credittopia — for Experian to engage Gen Z and position the brand as a "rite of passage" at age 18. Designed a user-centered solution combining community learning, expert credit support, and a 4-module simulation game that mirrors real financial decisions. Collaborated on a scalable strategy to drive engagement, improve financial literacy, and build long-term customer retention.</p>
+          <div class="skills-used-label">Skills Applied</div>
+          <span class="tag tag-p">User-Centered Design</span>
+          <span class="tag tag-p">Product Development</span>
+          <span class="tag tag-p">Problem Solving</span>
+          <span class="tag tag-p">Strategic Planning</span>
+          <div class="deliverable-box">
+            <strong>Deliverable: </strong>
+            <a href="https://canva.link/slecjce7mey49yb" target="_blank">Project Presentation (Canva)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-inner">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="flex:1">
+            <h3 class="proj-title">Beyond Boundaries: Improving Student Support Services at Benedict College</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+              <span class="tag tag-p">Entrepreneurship</span>
+              <span class="tag tag-g">Fall 2025 – Spring 2026</span>
+              <span style="font-size:12px;color:var(--muted)">Case Study</span>
+            </div>
+          </div>
+          <span class="proj-toggle">▾</span>
+        </div>
+        <div class="proj-details">
+          <p>Developed a strategic improvement plan for Benedict College to increase student engagement with underutilized support services, including advisement, financial aid, and mental health resources. Designed a multi-phase, data-informed solution incorporating a mobile app, peer mentorship programs, financial literacy initiatives, and mental health outreach — with clear KPIs targeting a 50% increase in awareness, 30% growth in mental health engagement, and 40% improvement in student satisfaction. Applied research-backed methodologies and user-centered strategies to create a scalable, measurable plan aimed at enhancing accessibility, responsiveness, and overall student success.</p>
+          <div class="skills-used-label">Skills Applied</div>
+          <span class="tag tag-p">Project Management</span>
+          <span class="tag tag-p">Process Improvement</span>
+          <span class="tag tag-p">Strategic Planning</span>
+          <span class="tag tag-p">KPI Development</span>
+          <div class="deliverable-box">
+            <strong>Deliverable: </strong>
+            <a href="https://drive.google.com/file/d/17SrZUeSlGVwCCp0kBD3DFagy6xqXnOPZ/view?usp=sharing" target="_blank">Case Study Report (Google Drive)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SKILLS
+══════════════════════════════════════════════ -->
+<section id="pg-skills" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="s-title">Skills Showcase</h2>
+    <p class="s-sub">The tools, frameworks, and soft skills I bring to every role.</p>
+
+    <div class="g3" style="margin-bottom:20px">
+      <div class="skill-category">
+        <div class="sk-cat-head">Research &amp; Analytics</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>A/B Testing</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Market Trend Analysis</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Competitive Analysis</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Customer Acquisition Analysis</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Social Media Analytics</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Consumer Insights</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>TAM / SAM / SOM Modeling</div>
+      </div>
+      <div class="skill-category">
+        <div class="sk-cat-head">Marketing</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Digital Marketing</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Campaign Strategy</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>SEO &amp; Content Strategy</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Multi-Channel Marketing</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Brand Development</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>HubSpot CRM</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Social Commerce</div>
+      </div>
+      <div class="skill-category">
+        <div class="sk-cat-head">Tools &amp; Software</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Microsoft Excel (Advanced)</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Google Workspace</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>PowerPoint</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Canva</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Shopify</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Design Thinking</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Financial Modeling</div>
+      </div>
+      <div class="skill-category">
+        <div class="sk-cat-head">Professional</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Strategic Communication</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Public Speaking</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Organizational Leadership</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Cross-Functional Collaboration</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Report Preparation</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Time Management</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Event Coordination</div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="card">
+      <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:20px">Certifications &amp; Training</h3>
+      <div class="cert-row"><span class="cert-star">✦</span> HubSpot Academy — Social Media Certification (2025)</div>
+      <div class="cert-row"><span class="cert-star">✦</span> HubSpot Academy — Inbound Sales Certification (2025)</div>
+      <div class="cert-row"><span class="cert-star">✦</span> LinkedIn Learning — Problem-Solving Techniques</div>
+      <div class="cert-row"><span class="cert-star">✦</span> HP Foundation — Certificate in Design Thinking</div>
+      <div class="cert-row"><span class="cert-star">✦</span> Non-Profit Consulting Remote Externship Certificate — ParagonOne (2022)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     REFLECTION
+══════════════════════════════════════════════ -->
+<section id="pg-reflection" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">Growth &amp; Vision</div>
+    <h2 class="s-title">Capstone Reflection</h2>
+    <p class="s-sub">My transformation from student to professional, in my own words.</p>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="ref-wrap">
+        <div class="ref-num">01</div>
+        <div>
+          <div class="ref-title">My Journey at Benedict</div>
+          <div class="ref-body">My time at Benedict College and in BA 432 taught me that entrepreneurship is far more than having a great idea; it demands resilience, discipline, and an unwavering commitment to the details that most people overlook. Building Nature Glow from concept to a fully developed business plan showed me that the entrepreneurial journey is not linear. There were moments where I had to pause, reassess, and pivot, and those moments taught me more than any smooth stretch of progress ever could. I learned that even the smallest miscalculation — a single financial figure entered incorrectly — can create a ripple effect that requires you to trace every number back to the beginning. That level of accountability pushed me to become more meticulous and intentional in everything I produce. Beyond the technical skills, I also learned a great deal about myself. I rise to the challenge, take complex ideas and communicate them clearly, and genuinely care about building something meaningful. Senior Defense Day was a defining moment in that growth. Standing in front of a panel of judges and pitching my business forced me to own my work with confidence. I had to articulate not just what Nature Glow was, but why it mattered — and doing that successfully showed me that I am more capable than I sometimes give myself credit for.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="ref-wrap">
+        <div class="ref-num">02</div>
+        <div>
+          <div class="ref-title">Challenges &amp; Breakthroughs</div>
+          <div class="ref-body">One of the most significant challenges I faced during my capstone was ensuring the accuracy and integrity of my financial projections. Every figure had to be grounded in real industry data, sourced from credible references, and internally consistent across every financial statement. The pressure of that was immense because a single error — an incorrect cost per unit, a mislinked formula, or an unsupported assumption — would throw off the entire model and require me to trace the problem all the way back to its origin. I overcame this challenge by building my spreadsheet with linked cells so that any change would automatically update throughout the model, and by documenting every source as I researched, so nothing was left unverifiable. Beyond the financials, I also had to make strategic pivots to the business itself, including expanding the product line to strengthen the revenue model and improve overall feasibility. These adjustments were not setbacks; they were breakthroughs in disguise because they forced me to think like a real business owner responding to real market conditions. If I could do anything differently, I would establish a source-documentation habit from day one — recording where every figure comes from before moving forward — rather than trying to reconstruct that trail later.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="ref-wrap">
+        <div class="ref-num">03</div>
+        <div>
+          <div class="ref-title">My Professional Future</div>
+          <div class="ref-body">In five years, I see myself working as a market research analyst, ideally after completing a master's degree in business analytics. My capstone experience in BA 432 was instrumental in building that foundation. Conducting industry research, sizing a market using TAM, SAM, and SOM frameworks, analyzing competitors, and translating raw data into a coherent business strategy are all skills I now carry with genuine confidence. Nature Glow was not just a class project; it was proof that I can take an idea, research it rigorously, and build a credible, data-backed plan around it. The skills I will carry forward most are market research and analysis, financial literacy, public speaking, and the ability to communicate complex information clearly to different audiences. Senior Defense Day in particular sharpened my ability to present under pressure and think critically on my feet — a skill that will serve me in any professional environment. As a leader, I do not aspire to lead through authority or rigid hierarchy. I want to be a transformational leader — someone who earns trust by being reliable, who sets a clear vision and empowers others to execute it, and who creates an environment where people feel motivated to do their best work not because they have to, but because they want to.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scripture">
+      <p class="scripture-text">"For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end."</p>
+      <p class="scripture-ref">— Jeremiah 29:11 KJV</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     RÉSUMÉ
+══════════════════════════════════════════════ -->
+<section id="pg-resume" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">Professional Profile</div>
+    <h2 class="s-title">Résumé</h2>
+    <p class="s-sub">Updated, employer-ready, and linked to LinkedIn.</p>
+
+    <div class="res-dl-bar">
+      <span style="font-size:14px;color:var(--muted)">Download or view my latest résumé</span>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="https://drive.google.com/file/d/1CeSyfWXfwEY-u8bKyxHbbDTW2HgyMZDP/view?usp=sharing" class="btn btn-primary" target="_blank">Download PDF ↓</a>
+        <a href="https://www.linkedin.com/in/monelle-sherwood-b24970249/" class="btn btn-outline" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <!-- Objective -->
+    <div class="card card-gold" style="margin-bottom:16px">
+      <div style="font-size:10.5px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:10px">Professional Objective</div>
+      <p style="font-size:15px;line-height:1.85">Marketing graduate (GPA 3.95) with hands-on experience in competitive analysis, A/B testing, and data-driven strategy seeking an entry-level Market Research Analyst role. Proven ability to translate market insights into actionable recommendations that reduce costs, grow engagement, and support business growth.</p>
+    </div>
+
+    <!-- Education -->
+    <div class="card" style="margin-bottom:16px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:14px">Education</h3>
+      <div style="font-size:16px;font-weight:700;color:var(--ink)">Bachelor of Science in Business Administration — Marketing</div>
+      <div style="font-size:14px;color:var(--purple);margin-top:4px;font-weight:500">Benedict College · Tyrone Adam Burroughs School of Business &amp; Entrepreneurship</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-top:6px">Expected May 2026 · GPA: 3.95 / 4.00</div>
+      <div style="margin-top:12px">
+        <span class="tag tag-g">Presidential Award Recipient</span>
+        <span class="tag tag-g">Tyrone Adam Burroughs Scholar</span>
+        <span class="tag tag-g">Honors Program</span>
+        <span class="tag tag-g">Dean's List</span>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="card" style="margin-bottom:16px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:20px">Professional Experience</h3>
+
+      <div class="exp-row">
+        <div class="exp-head">
+          <div class="exp-title">Marketing Intern</div>
+          <div class="exp-dates">May 2025 – Aug 2025</div>
+        </div>
+        <div class="exp-org">Experian · Remote</div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Analyzed customer acquisition performance, market trends, and competitor strategies across 7+ organizations, identifying channel development opportunities for digital marketing initiatives.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Led A/B testing campaigns that reduced cost per acquisition by 34%, improving conversion performance through data-driven customer engagement strategies.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Collaborated with marketing and analytics teams to present targeted insights that improved campaign performance and overall customer engagement.</span></div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-head">
+          <div class="exp-title">Content Creation Assistant Manager</div>
+          <div class="exp-dates">Sep 2024 – Apr 2025</div>
+        </div>
+        <div class="exp-org">Student-Made, Benedict College Chapter · Columbia, SC</div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Produced 20+ promotional materials annually, raising brand awareness across multiple student business showcases.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Managed a team of 5+ student entrepreneurs across 10+ events, delegating tasks and ensuring on-time project delivery.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Grew social media engagement by 10% through targeted outreach and relationship-building strategies.</span></div>
+      </div>
+
+      <div class="exp-row">
+        <div class="exp-head">
+          <div class="exp-title">Marketing Intern</div>
+          <div class="exp-dates">Jun 2024 – Jul 2024</div>
+        </div>
+        <div class="exp-org">The Promotion Lady LLC · Remote</div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Developed and executed multi-channel marketing strategies across social, digital, and blog platforms, driving a 15% increase in brand visibility in 2 months.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Authored SEO-informed blog content translating brand messaging and consumer trends into long-form content supporting organic growth.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Produced platform-specific content resulting in a 10% increase in follower engagement and expanded audience reach.</span></div>
+      </div>
+
+      <div class="exp-row" style="margin-bottom:0">
+        <div class="exp-head">
+          <div class="exp-title">Landscape Mapping &amp; Fundraising Strategy Extern</div>
+          <div class="exp-dates">Sep 2022 – Nov 2022</div>
+        </div>
+        <div class="exp-org">PricewaterhouseCoopers LLP · Remote</div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Conducted landscape mapping to qualify 50+ high-potential donor prospects, leveraging market research to expand outreach for a strategic education initiative.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Translated complex regional funding trends into data-driven strategies, optimizing outreach effectiveness by 40%.</span></div>
+        <div class="bullet-row"><span class="bullet-dot">●</span><span>Developed fundraising framework achieving an 80% donor-to-program compatibility rate, streamlining prospect-to-engagement pipeline.</span></div>
+      </div>
+    </div>
+
+    <!-- Skills columns -->
+    <div class="fw" style="margin-bottom:16px">
+      <div class="skill-col">
+        <div class="sk-col-head">Technical</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Microsoft Excel (Advanced)</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Google Workspace</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>A/B Testing</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Data Visualization</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>HubSpot CRM</div>
+      </div>
+      <div class="skill-col">
+        <div class="sk-col-head">Leadership</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Organizational Leadership</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Event Coordination</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Public Speaking</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Strategic Planning</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Time Management</div>
+      </div>
+      <div class="skill-col">
+        <div class="sk-col-head">Industry</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Digital Marketing</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Competitive Analysis</div>
+        <div class="sk-item"><span class="sk-dot gold"></span>Customer Acquisition</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>SEO &amp; Content Strategy</div>
+        <div class="sk-item"><span class="sk-dot muted"></span>Campaign Strategy</div>
+      </div>
+    </div>
+
+    <!-- Certs & Leadership -->
+    <div class="fw">
+      <div class="card" style="flex:1 1 260px;margin-bottom:0">
+        <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px">Certifications</h3>
+        <div class="cert-row"><span class="cert-star">✦</span> HubSpot Social Media Certification (2025)</div>
+        <div class="cert-row"><span class="cert-star">✦</span> HubSpot Inbound Sales Certification (2025)</div>
+        <div class="cert-row"><span class="cert-star">✦</span> LinkedIn Learning — Problem-Solving Techniques</div>
+        <div class="cert-row"><span class="cert-star">✦</span> HP Foundation — Design Thinking Certificate</div>
+        <div class="cert-row"><span class="cert-star">✦</span> Non-Profit Consulting Extern Certificate (2022)</div>
+      </div>
+      <div class="card" style="flex:1 1 260px;margin-bottom:0">
+        <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:14px">Leadership &amp; Involvement</h3>
+        <div class="inv-row"><span class="inv-star">✦</span> Burroughs Student Advisory Board — Chair (2025–2026)</div>
+        <div class="inv-row"><span class="inv-star">✦</span> National Association of Black Accountants (NABA) — Secretary (2023–2026)</div>
+        <div class="inv-row"><span class="inv-star">✦</span> Society for Financial Education &amp; Professional Development — Student Ambassador</div>
+        <div class="inv-row"><span class="inv-star">✦</span> CFA Fellow &amp; Conference Participant</div>
+        <div class="inv-row"><span class="inv-star">✦</span> International Student Association — Member</div>
+        <div class="inv-row"><span class="inv-star">✦</span> Volunteer: Sickle Cell Foundation &amp; Red Cross Blood Drive</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════ -->
+<section id="pg-contact" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">Let's Connect</div>
+    <h2 class="s-title">Contact Information</h2>
+    <p class="s-sub">Ready to talk? Here is how to reach me.</p>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="g2">
+        <div class="contact-tile">
+          <div class="ct-icon">✉</div>
+          <div class="ct-label">Email</div>
+          <div class="ct-val"><a href="mailto:monelle.sherwood85@my.benedict.edu">monelle.sherwood85@my.benedict.edu</a></div>
+        </div>
+        <div class="contact-tile">
+          <div class="ct-icon">☎</div>
+          <div class="ct-label">Phone</div>
+          <div class="ct-val">(352) 708-9233</div>
+        </div>
+        <div class="contact-tile">
+          <div class="ct-icon">in</div>
+          <div class="ct-label">LinkedIn</div>
+          <div class="ct-val"><a href="https://www.linkedin.com/in/monelle-sherwood-b24970249/" target="_blank">linkedin.com/in/monelle-sherwood</a></div>
+        </div>
+        <div class="contact-tile">
+          <div class="ct-icon">◎</div>
+          <div class="ct-label">Location</div>
+          <div class="ct-val">Columbia, South Carolina</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="refs-block">
+      <h3>References Available Upon Request</h3>
+      <p>Professional and academic references provided upon request. Please contact me via email or LinkedIn.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     GALLERY
+══════════════════════════════════════════════ -->
+<section id="pg-gallery" class="pg">
+  <div class="wrap">
+    <div class="eyebrow">My Journey</div>
+    <h2 class="s-title">Photo Gallery</h2>
+    <p class="s-sub">Moments from my academic journey, internships, events, and life at Benedict College.</p>
+
+    <!-- Grid -->
+    <div class="gal-grid" id="galGrid">
+      <div class="gal-item" onclick="openLightbox(0)">
+        <img src="https://drive.google.com/thumbnail?id=1M3r0N5rOSel0Hs2bbjzLGZ4xxiz4mWhD&sz=w800" alt="Photo 1" loading="lazy">
+        <div class="gal-item-overlay">
+          <div class="gal-item-caption">My Journey</div>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLightbox(1)">
+        <img src="https://drive.google.com/thumbnail?id=13XMK_Sx1DfARCLE0-Ib4BDQ76Nnw7nZr&sz=w800" alt="Photo 2" loading="lazy">
+        <div class="gal-item-overlay">
+          <div class="gal-item-caption">My Journey</div>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLightbox(2)">
+        <img src="https://drive.google.com/thumbnail?id=1aqxqmXatUyG2f-SRsHPxzoqG5Yz7fe-7&sz=w800" alt="Photo 3" loading="lazy">
+        <div class="gal-item-overlay">
+          <div class="gal-item-caption">My Journey</div>
+        </div>
+      </div>
+      <div class="gal-item" onclick="openLightbox(3)">
+        <img src="https://drive.google.com/thumbnail?id=1LImEt7RFGthA-1wgtpHTMg8H80qxbO55&sz=w800" alt="Photo 4" loading="lazy">
+        <div class="gal-item-overlay">
+          <div class="gal-item-caption">My Journey</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-arrow lb-prev" onclick="lbNav(-1)">&#8249;</button>
+  <div class="lb-img-wrap">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <img id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+  <button class="lb-arrow lb-next" onclick="lbNav(1)">&#8250;</button>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p class="foot-title">BA 432 Senior Capstone Portfolio</p>
+  <p class="foot-sub">Benedict College · Tyrone Adam Burroughs School of Business &amp; Entrepreneurship</p>
+  <p class="foot-sm">Spring 2026 · Dr. Chantil Wright-Galloway</p>
+</footer>
+
+<script>
+function go(pageId, btn) {
+  // hide all pages
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
+  // show target
+  const target = document.getElementById('pg-' + pageId);
+  if (target) {
+    target.classList.add('active');
+    // force re-animation
+    target.style.animation = 'none';
+    target.offsetHeight; // reflow
+    target.style.animation = '';
+  }
+  // update nav
+  document.querySelectorAll('.nbtn').forEach(b => b.classList.remove('active'));
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    // find the nav button by page id
+    document.querySelectorAll('.nbtn').forEach(b => {
+      const txt = b.textContent.trim().toLowerCase();
+      if (txt === pageId || (pageId === 'resume' && txt === 'résumé')) {
+        b.classList.add('active');
+      }
+    });
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── GALLERY ──
+const galleryImages = [
+  { src: 'https://drive.google.com/thumbnail?id=1M3r0N5rOSel0Hs2bbjzLGZ4xxiz4mWhD&sz=w800', name: 'My Journey' },
+  { src: 'https://drive.google.com/thumbnail?id=13XMK_Sx1DfARCLE0-Ib4BDQ76Nnw7nZr&sz=w800', name: 'My Journey' },
+  { src: 'https://drive.google.com/thumbnail?id=1aqxqmXatUyG2f-SRsHPxzoqG5Yz7fe-7&sz=w800', name: 'My Journey' },
+  { src: 'https://drive.google.com/thumbnail?id=1LImEt7RFGthA-1wgtpHTMg8H80qxbO55&sz=w800', name: 'My Journey' },
+];
+let lbIndex = 0;
+
+function openLightbox(i) {
+  lbIndex = i;
+  document.getElementById('lbImg').src = galleryImages[i].src;
+  document.getElementById('lbCaption').textContent = galleryImages[i].name;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+}
+
+function lbNav(dir) {
+  lbIndex = (lbIndex + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById('lbImg').src = galleryImages[lbIndex].src;
+  document.getElementById('lbCaption').textContent = galleryImages[lbIndex].name;
+}
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+
+function toggleProj(card) {
+  const det = card.querySelector('.proj-details');
+  const tog = card.querySelector('.proj-toggle');
+  const isOpen = det.classList.contains('open');
+  det.classList.toggle('open', !isOpen);
+  tog.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
